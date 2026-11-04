@@ -73,10 +73,26 @@ What to expect with GBFlash v1.3, firmware L15:
 See [PROTOCOL.md](PROTOCOL.md) for the full register and command description, including the
 helper disassembly it was derived from.
 
+## Credits
+
+This work stands on other people's projects:
+
+- **[FlashGBX](https://github.com/lesserkuma/FlashGBX)** by Lesserkuma, the reader/writer this
+  adds a cart to, and the **GBFlash** hardware it drives.
+- **[PogoShell](https://github.com/NuVanDibe/Pogoshell-K)** by sasq (Jonas Minnberg, 2003-2004),
+  with Kuwanger's later Pogoshell-K fork kept alive by NuVanDibe. Its `libfc_xrom` driver was the
+  second source for the bank-register protocol and PogoShell images were the test material for
+  every full-cart write here; the save-filesystem notes come from its `sramfile.c`.
+- **[Revolution81's GBA-X-Rom-Windows-11](https://github.com/Revolution81/GBA-X-Rom-Windows-11)**,
+  which brought the original X-Rom USB link cable back to life on Windows 11 with a WinUSB shim
+  for the 2003 kernel drivers. The cable route is how the first full cart backup was taken and is
+  the cross-check that the GBFlash writes were verified against.
+- **EasyBuy2000** (2004), makers of the X-ROM 512M and of the USBCable/MRTool/LittleWriter
+  helpers whose GBA-side "XROM OS" program is the primary source of the protocol.
+
 ## Licence
 
-MIT, like FlashGBX itself. FlashGBX is by Lesserkuma; the X-ROM 512M and its tools are by
-EasyBuy2000 (2004); the Windows 11 link-cable route is by Revolution81.
+MIT, like FlashGBX itself. Material from the projects above stays under their own licences.
 
 ## AI disclosure
 
