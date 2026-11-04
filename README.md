@@ -77,3 +77,11 @@ helper disassembly it was derived from.
 
 MIT, like FlashGBX itself. FlashGBX is by Lesserkuma; the X-ROM 512M and its tools are by
 EasyBuy2000 (2004); the Windows 11 link-cable route is by Revolution81.
+
+## AI disclosure
+
+This project was built with Claude (Anthropic) working as a coding agent under the author's
+direction: the helper disassembly, the FlashGBX patch, the installer, the hardware tests and
+these documents were produced in that collaboration. Every write path described here was
+verified on a real X-ROM 512M through a GBFlash v1.3 before being written up. Mistakes are
+still possible; back up your cart before flashing.
