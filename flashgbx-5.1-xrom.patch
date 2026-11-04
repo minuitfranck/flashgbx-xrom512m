@@ -1,0 +1,62 @@
+--- a/FlashGBX/LK_Device.py
++++ b/FlashGBX/LK_Device.py
+@@ -4675,10 +4675,12 @@
+ 							if bank != current_bank:
+ 								flashcart.Reset(full_reset=True)
+ 								flashcart.SelectBankROM(bank)
++								current_bank = bank
++							# X-ROM fix: addresses must always be bank-window relative, not only on a bank change
++							if start_address >= cart_type["flash_bank_size"]:
+ 								temp = end_address - start_address
+ 								start_address %= cart_type["flash_bank_size"]
+ 								end_address = min(cart_type["flash_bank_size"], start_address + temp)
+-								current_bank = bank
+ 					# ↑↑↑ Switch ROM bank
+ 
+ 					pos = start_address
+@@ -4761,10 +4763,12 @@
+ 						if bank != current_bank:
+ 							flashcart.Reset(full_reset=True)
+ 							flashcart.SelectBankROM(bank)
++							current_bank = bank
++						# X-ROM fix: addresses must always be bank-window relative, not only on a bank change
++						if start_address >= cart_type["flash_bank_size"]:
+ 							temp = end_address - start_address
+ 							start_address %= cart_type["flash_bank_size"]
+ 							end_address = min(cart_type["flash_bank_size"], start_address + temp)
+-							current_bank = bank
+ 				# ↑↑↑ Switch ROM bank
+ 
+ 				skip_init = False
+@@ -5091,10 +5095,12 @@
+ 								if bank != current_bank:
+ 									flashcart.Reset(full_reset=True)
+ 									flashcart.SelectBankROM(bank)
++									current_bank = bank
++								# X-ROM fix: addresses must always be bank-window relative, not only on a bank change
++								if start_address >= cart_type["flash_bank_size"]:
+ 									temp = end_address - start_address
+ 									start_address %= cart_type["flash_bank_size"]
+ 									end_address = min(cart_type["flash_bank_size"], start_address + temp)
+-									current_bank = bank
+ 							pos_from = sector[0]
+ 							verify_len = min(sector[1], max(0, len(data_import) - pos_from))
+ 						# ↑↑↑ Switch ROM bank
+--- a/FlashGBX/Flashcart.py
++++ b/FlashGBX/Flashcart.py
+@@ -602,6 +602,15 @@
+ 			self.CartWrite([[0x987654*2, 0x5354]], fast_write=False)
+ 			self.CartWrite([[0xF12345*2, 0x9413]], fast_write=False)
+ 			return True
++		elif self.CONFIG["flash_bank_select_type"] == 3: # X-ROM 512M (EasyBuy2000)
++			# 16-bit register at 0x09000000: write 0x8000 to arm it, then
++			# 0x8000 | (cart offset >> 17); the helper program that USBCable
++			# uploads to the GBA maps 16 MiB windows (bits 7-8 of that value).
++			bank_size = self.CONFIG.get("flash_bank_size", 0x1000000)
++			value = 0x8000 | ((index * bank_size) >> 17)
++			self.CartWrite([[0x1000000, 0x8000]], fast_write=False)
++			self.CartWrite([[0x1000000, value]], fast_write=False)
++			return True
+ 
+ 		return False
+ 

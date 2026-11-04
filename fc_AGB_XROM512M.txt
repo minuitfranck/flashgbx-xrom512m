@@ -1,0 +1,94 @@
+{
+	"type":"AGB",
+	"names":[
+		"X-ROM 512M (EasyBuy2000, 2x AMD/Spansion x8 chips)"
+	],
+	"flash_ids":[
+		[ 0x01, 0x01, 0x01, 0x01, 0x7E, 0x7E, 0x7E, 0x7E ]
+	],
+	"voltage":3.3,
+	"flash_size":0x4000000,
+	"flash_bank_size":0x1000000,
+	"flash_bank_select_type":3,
+	"sector_size":0x20000,
+	"chip_erase_timeout":600,
+		"buffer_size":64,
+	"double_die":true,
+	"command_set":"AMD",
+	"commands":{
+		"unlock":[
+			[ 0x130ECA8, 0x5354, 1 ],
+			[ 0x1E2468A, 0x9413, 1 ],
+			[ 0x1000000, 0x8000, 1 ],
+			[ 0x1000000, 0x8000, 1 ]
+		],
+		"reset":[
+			[ 0, 0xF0F0 ]
+		],
+		"read_identifier":[
+			[ 0x1554, 0xAAAA ],
+			[ 0xAAA, 0x5555 ],
+			[ 0x1554, 0x9090 ]
+		],
+		"sector_erase":[
+			[ 0x1554, 0xAAAA ],
+			[ 0xAAA, 0x5555 ],
+			[ 0x1554, 0x8080 ],
+			[ 0x1554, 0xAAAA ],
+			[ 0xAAA, 0x5555 ],
+			[ "SA", 0x3030 ]
+		],
+		"sector_erase_wait_for":[
+			[ null, null, null ],
+			[ null, null, null ],
+			[ null, null, null ],
+			[ null, null, null ],
+			[ null, null, null ],
+			[ "SA", 0xFFFF, 0xFFFF ]
+		],
+		"buffer_write":[
+			[ 0x1554, 0xAAAA ],
+			[ 0xAAA, 0x5555 ],
+			[ "SA", 0x2525 ],
+			[ "SA", "BS" ],
+			[ "PA", "PD" ],
+			[ "SA", 0x2929 ]
+		],
+		"buffer_write_wait_for":[
+			[ null, null, null ],
+			[ null, null, null ],
+			[ null, null, null ],
+			[ null, null, null ],
+			[ null, null, null ],
+			[ "SA", "PD", 0xFFFF ]
+		],
+		"chip_erase":[
+			[ 0x1554, 0xAAAA ],
+			[ 0xAAA, 0x5555 ],
+			[ 0x1554, 0x8080 ],
+			[ 0x1554, 0xAAAA ],
+			[ 0xAAA, 0x5555 ],
+			[ 0x1554, 0x1010 ]
+		],
+		"chip_erase_wait_for":[
+			[ null, null, null ],
+			[ null, null, null ],
+			[ null, null, null ],
+			[ null, null, null ],
+			[ null, null, null ],
+			[ 0, 0xFFFF, 0xFFFF ]
+		],
+		"single_write":[
+			[ 0x1554, 0xAAAA ],
+			[ 0xAAA, 0x5555 ],
+			[ 0x1554, 0xA0A0 ],
+			[ "PA", "PD" ]
+		],
+		"single_write_wait_for":[
+			[ null, null, null ],
+			[ null, null, null ],
+			[ null, null, null ],
+			[ null, null, null ]
+		]
+	}
+}

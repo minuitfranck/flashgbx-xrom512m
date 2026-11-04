@@ -1,0 +1,6 @@
+*.orig_xrom
+*.gba
+*.sav
+*.bin
+__pycache__/
+*.pyc
