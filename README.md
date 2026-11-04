@@ -77,8 +77,11 @@ helper disassembly it was derived from.
 
 This work stands on other people's projects:
 
-- **[FlashGBX](https://github.com/lesserkuma/FlashGBX)** by Lesserkuma, the reader/writer this
-  adds a cart to, and the **GBFlash** hardware it drives.
+- **[FlashGBX](https://github.com/lesserkuma/FlashGBX)** by **Lesserkuma**, one of the biggest
+  contributors to the Game Boy preservation scene. FlashGBX is the reader/writer this adds a
+  cart to, and its flash-cart profile system, buffered write support and `double_die` handling
+  are what made a 2004 cart writable with a modern reader in a day. The **GBFlash** hardware it
+  drives completes the picture.
 - **[PogoShell](https://github.com/NuVanDibe/Pogoshell-K)** by sasq (Jonas Minnberg, 2003-2004),
   with Kuwanger's later Pogoshell-K fork kept alive by NuVanDibe. Its `libfc_xrom` driver was the
   second source for the bank-register protocol and PogoShell images were the test material for
@@ -89,6 +92,17 @@ This work stands on other people's projects:
   the cross-check that the GBFlash writes were verified against.
 - **EasyBuy2000** (2004), makers of the X-ROM 512M and of the USBCable/MRTool/LittleWriter
   helpers whose GBA-side "XROM OS" program is the primary source of the protocol.
+
+Further X-ROM sources that shaped this work:
+
+- **DadyCool's LittleWriter**, the 2004 Windows flasher for the X-Rom cable, which Revolution81's
+  package carries forward.
+- **Jeff Frohwein's devrs.com**, which hosted the MRTool documentation and the X-ROM testing
+  tools that the EasyBuy2000 readme points to.
+- **The X-Rom Guide** (xromguide.50webs.com), the community's getting-started, PogoShell, BOMA,
+  LittleWriter and USBCable guides from the cart's heyday.
+- **Daniel Lo Nigro's X-ROM Frontend** (2004), the original GUI around MRTool and USBCable.
+- **Spansion's GL-M (S29GL256M) datasheet**, for the command set the two parallel chips answer to.
 
 ## Licence
 
